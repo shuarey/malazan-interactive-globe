@@ -13,6 +13,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 const orbitControl = new OrbitControls( camera, renderer.domElement );
+orbitControl.rotateSpeed = 0.25;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
