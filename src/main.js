@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import vertexShader from '../shaders/vertex.glsl';
 import fragmentShader from '../shaders/fragment.glsl';
 import atmosphereVertexShader from '../shaders/atmosphereVertex.glsl';
@@ -10,6 +11,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
     antialias: true,
 });
+
+const orbitControl = new OrbitControls( camera, renderer.domElement );
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -41,14 +44,11 @@ const atmosphere = new THREE.Mesh(
 
 atmosphere.scale.set(1.1, 1.1, 1.1);
 
-const group = new THREE.Group();
-group.add(sphere);
-group.add(atmosphere);
-scene.add(group);  
-
-console.log(scene);
+scene.add(sphere);
+scene.add(atmosphere);
 
 camera.position.z = 15;
+orbitControl.update();
 
 const mouse = {
     x: undefined,
@@ -57,13 +57,7 @@ const mouse = {
 
 function animate() {
     requestAnimationFrame(animate);
+    orbitControl.update();
     renderer.render(scene, camera);
-    sphere.rotation.y += 0.001;
-    group.rotation.y = mouse.x;
 }
 animate();
-
-addEventListener('mousemove', () => {
-    mouse.x = (clientX / innerWidth) * 2 - 1;
-    mouse.y = -(clientY / innerHeight) * 2 + 1;
-});
