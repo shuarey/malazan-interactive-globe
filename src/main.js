@@ -27,7 +27,7 @@ const sphere = new THREE.Mesh(
         fragmentShader,
         uniforms: {
             globeTexture: {
-                value: new THREE.TextureLoader().load('/public/img/malazan.png')
+                value: new THREE.TextureLoader().load('/img/malazan.png')
             }
         }
     })
