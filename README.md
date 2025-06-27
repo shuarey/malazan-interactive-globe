@@ -81,7 +81,6 @@ npm run preview
 ## Interaction
 
 - **Mouse Movement**: Move your mouse to rotate the globe horizontally
-- **Auto-rotation**: The globe continuously rotates on its Y-axis
 
 ## Future Enhancements
 
@@ -91,7 +90,6 @@ This sandbox provides a foundation for more advanced features:
 - Multiple texture layers (political boundaries, terrain, etc.)
 - Timeline-based map changes throughout the series
 - Character journey paths
-- 3D terrain elevation
 
 ## License
 
