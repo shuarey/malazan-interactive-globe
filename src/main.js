@@ -4,7 +4,6 @@ import vertexShader from '../shaders/vertex.glsl';
 import fragmentShader from '../shaders/fragment.glsl';
 import atmosphereVertexShader from '../shaders/atmosphereVertex.glsl';
 import atmosphereFragmentShader from '../shaders/atmosphereFragment.glsl';
-import { or } from 'three/tsl';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -12,6 +11,9 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
     antialias: true,
 });
+
+const mouse = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
 
 const orbitControl = new OrbitControls( camera, renderer.domElement );
 orbitControl.rotateSpeed = 0.25;
@@ -50,20 +52,31 @@ const atmosphere = new THREE.Mesh(
 
 atmosphere.scale.set(1.1, 1.1, 1.1);
 
-scene.add(sphere);
-scene.add(atmosphere);
+const group = new THREE.Group();
+group.add(sphere);
+group.add(atmosphere);
+scene.add(group);
 
 camera.position.z = 15;
 orbitControl.update();
 
-const mouse = {
-    x: undefined,
-    y: undefined
+function onPointerMove( event ) {
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
 function animate() {
+    raycaster.setFromCamera( mouse, camera );
+
+    const intersects = raycaster.intersectObjects( [ sphere ] );
+    if ( intersects.length > 0 ) {
+        const { x, y, z } = intersects[ 0 ].point;
+        console.log(`Intersected at: x: ${x}, y: ${y}, z: ${z}`);
+    }
+
     requestAnimationFrame(animate);
     orbitControl.update();
     renderer.render(scene, camera);
 }
+window.addEventListener( 'pointermove', onPointerMove );
 animate();
