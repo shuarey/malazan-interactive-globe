@@ -71,6 +71,8 @@ function animate() {
     const intersects = raycaster.intersectObjects( [ sphere ] );
     if ( intersects.length > 0 ) {
         const { x, y, z } = intersects[ 0 ].point;
+        // Darujhistan
+        // x: 1.6154145694251663, y: 3.283790346420088, z: -3.4025461067423945
         console.log(`Intersected at: x: ${x}, y: ${y}, z: ${z}`);
     }
 
