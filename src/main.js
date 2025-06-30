@@ -24,7 +24,7 @@ orbitControl.maxDistance = 20;
 orbitControl.screenSpacePanning = false;
 orbitControl.mouseButtons.RIGHT = null;
 orbitControl.touches.ONE = THREE.TOUCH.ROTATE;
-orbitControl.touches.TWO = THREE.TOUCH.DOLLY;
+orbitControl.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
