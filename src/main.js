@@ -22,6 +22,9 @@ orbitControl.dampingFactor = 0.1;
 orbitControl.minDistance = 5.5;
 orbitControl.maxDistance = 20;
 orbitControl.screenSpacePanning = false;
+orbitControl.mouseButtons.RIGHT = null;
+orbitControl.touches.ONE = THREE.TOUCH.ROTATE;
+orbitControl.touches.TWO = THREE.TOUCH.DOLLY;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
