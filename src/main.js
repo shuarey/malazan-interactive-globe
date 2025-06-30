@@ -90,13 +90,18 @@ function onPointerClick( event ) {
             popupImg = '/img/darujhistan.jpg';
         }
 
+        if (Math.abs(x - 0.932) < .1 && Math.abs(y - 3.207) < .1 && Math.abs(z + 3.711) < .1) {
+            popupTitle = 'Capustan';
+            popupImg = '/img/capustan.jpg';
+        }
+
         if ( popupImg === '' ) {
             console.log(`No popup image found for this location x: ${x}, y: ${y}, z: ${z}.`);
             return;
         }
 
         const title = document.createElement('h3');
-        title.textContent = popupTitle || 'Unknown Location';
+        title.textContent = popupTitle;
         title.style.cssText = `
         margin: 0 0 15px 0;
         color: #333;
@@ -159,6 +164,7 @@ function onPointerClick( event ) {
 
         closeButton.addEventListener('click', () => {
             document.body.removeChild(popup);
+            document.body.style.pointerEvents = 'auto';
         });
 
         imageContainer.appendChild(title);
@@ -168,6 +174,7 @@ function onPointerClick( event ) {
         
         // Add to page
         document.body.appendChild(popup);
+        // disable button clicks outside the popup
         
         console.log(`Clicked at: x: ${x}, y: ${y}, z: ${z}`);
     }
