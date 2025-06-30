@@ -19,7 +19,7 @@ const orbitControl = new OrbitControls( camera, renderer.domElement );
 orbitControl.rotateSpeed = 0.25;
 orbitControl.enableDamping = true;
 orbitControl.dampingFactor = 0.1;
-orbitControl.minDistance = 6;
+orbitControl.minDistance = 5.5;
 orbitControl.maxDistance = 20;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -81,7 +81,7 @@ function onPointerClick( event ) {
         let popupTitle = '';
         let popupImg = '';
 
-        if (Math.abs(x - 1.677) < .1 && Math.abs(y - 3.330) < .1 && Math.abs(z + 3.321) < .1) {
+        if (Math.abs(x - 1.644) < .1 && Math.abs(y - 3.238) < .1 && Math.abs(z + 3.432) < .1) {
             popupTitle = 'Darujhistan';
             popupImg = '/img/darujhistan.jpg';
         }
