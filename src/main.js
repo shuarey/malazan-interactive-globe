@@ -20,7 +20,7 @@ orbitControl.rotateSpeed = 0.25;
 orbitControl.enableDamping = true;
 orbitControl.dampingFactor = 0.1;
 orbitControl.minDistance = 5.5;
-orbitControl.maxDistance = 20;
+orbitControl.maxDistance = 12;
 orbitControl.screenSpacePanning = false;
 orbitControl.mouseButtons.RIGHT = null;
 orbitControl.touches.ONE = THREE.TOUCH.ROTATE;
@@ -32,7 +32,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 const sphere = new THREE.Mesh( 
-    new THREE.SphereGeometry(5, 50, 50),
+    new THREE.SphereGeometry(5, 100, 100),
     new THREE.ShaderMaterial({
         vertexShader,
         fragmentShader,
@@ -45,7 +45,7 @@ const sphere = new THREE.Mesh(
 );
 
 const atmosphere = new THREE.Mesh( 
-    new THREE.SphereGeometry(5, 50, 50),
+    new THREE.SphereGeometry(5.5, 50, 50),
     new THREE.ShaderMaterial({
         vertexShader: atmosphereVertexShader,
         fragmentShader: atmosphereFragmentShader,
@@ -61,7 +61,7 @@ group.add(sphere);
 group.add(atmosphere);
 scene.add(group);
 
-camera.position.z = 15;
+camera.position.z = 10;
 orbitControl.update();
 
 function onPointerMove( event ) {
@@ -116,7 +116,6 @@ function onPointerClick( event ) {
         border-radius: 5px;
         `;
 
-        // Create popup overlay
         const popup = document.createElement('div');
         popup.style.cssText = `
             position: fixed;
@@ -164,7 +163,6 @@ function onPointerClick( event ) {
 
         closeButton.addEventListener('click', () => {
             document.body.removeChild(popup);
-            document.body.style.pointerEvents = 'auto';
         });
 
         imageContainer.appendChild(title);
@@ -172,9 +170,7 @@ function onPointerClick( event ) {
         imageContainer.appendChild(closeButton);
         popup.appendChild(imageContainer);
         
-        // Add to page
         document.body.appendChild(popup);
-        // disable button clicks outside the popup
         
         console.log(`Clicked at: x: ${x}, y: ${y}, z: ${z}`);
     }
